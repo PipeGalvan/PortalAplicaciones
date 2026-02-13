@@ -1,0 +1,173 @@
+{
+  "projects": [
+    {
+      "id": "pj1",
+      "name": "Expediente Judicial",
+      "description": "Sistema de gestión de expedientes judiciales",
+      "color": "#3b82f6",
+      "team": "Daniel, Fede",
+      "isActive": true,
+      "createdAt": "2026-02-13T00:00:00.000Z",
+      "updatedAt": "2026-02-13T15:18:48.787Z",
+      "history": [
+        {
+          "action": "created",
+          "modifiedBy": "system",
+          "modifiedAt": "2026-02-13T00:00:00.000Z"
+        },
+        {
+          "action": "updated",
+          "modifiedBy": "user",
+          "modifiedAt": "2026-02-13T15:16:55.785Z",
+          "changes": [
+            {
+              "field": "team",
+              "oldValue": "Equipo Judicial",
+              "newValue": "Daniel, Fede"
+            },
+            {
+              "field": "isActive",
+              "oldValue": true,
+              "newValue": false
+            }
+          ]
+        },
+        {
+          "action": "activated",
+          "modifiedBy": "user",
+          "modifiedAt": "2026-02-13T15:17:03.998Z"
+        },
+        {
+          "action": "deactivated",
+          "modifiedBy": "user",
+          "modifiedAt": "2026-02-13T15:18:46.637Z"
+        },
+        {
+          "action": "activated",
+          "modifiedBy": "user",
+          "modifiedAt": "2026-02-13T15:18:48.787Z"
+        }
+      ]
+    }
+  ],
+  "environments": [
+    {
+      "id": "mljkizfir70q1grq5sq",
+      "name": "Expediente Judicial",
+      "url": "https://desarrollo-cj.justiciasalta.gov.ar:8520/expjud/com.expedientejudicial.loginunico",
+      "port": "8520",
+      "user": "",
+      "database": "expedientejudicialtest2",
+      "type": "http",
+      "category": "Desarrollo",
+      "gxVersion": "18u14",
+      "tomcatVersion": "11",
+      "dbVersion": "PostgreSQL 17",
+      "tags": [
+        "expedientejudicial",
+        "desarrollo",
+        "critico"
+      ],
+      "notes": "",
+      "projects": [
+        "pj1"
+      ],
+      "createdAt": "2026-02-12T14:42:54.558Z",
+      "updatedAt": "2026-02-12T14:42:54.558Z"
+    },
+    {
+      "id": "mljkzsrwonnrzh8z2me",
+      "name": "Expediente Judicial PREPROD",
+      "url": "https://prepro-cj.justiciasalta.gov.ar:8520",
+      "port": "8520",
+      "user": "",
+      "database": "expedientejudicialtest",
+      "type": "http",
+      "category": "QA",
+      "gxVersion": "18u14",
+      "tomcatVersion": "11",
+      "dbVersion": "PostgreSQL 17",
+      "tags": [
+        "expedientejudicial",
+        "preprod",
+        "critico"
+      ],
+      "notes": "",
+      "projects": [
+        "pj1"
+      ],
+      "createdAt": "2026-02-12T14:55:59.084Z",
+      "updatedAt": "2026-02-12T15:40:36.871Z",
+      "httpMethod": "HEAD"
+    },
+    {
+      "id": "mljl18g6r4uff2xy1ud",
+      "name": "Expediente Judicial PROD",
+      "url": "https://cj.justiciasalta.gov.ar:8520/expjud/com.expedientejudicial.loginunico",
+      "port": "8520",
+      "user": "",
+      "database": "expedientejudicial",
+      "type": "http",
+      "category": "Producción",
+      "gxVersion": "18u14",
+      "tomcatVersion": "11",
+      "dbVersion": "PostgreSQL 17",
+      "tags": [
+        "expedientejudicial",
+        "produccion",
+        "critico"
+      ],
+      "notes": "",
+      "projects": [
+        "pj1"
+      ],
+      "createdAt": "2026-02-12T14:57:06.054Z",
+      "updatedAt": "2026-02-12T14:57:06.054Z"
+    },
+    {
+      "id": "mljlb13irqrsv81xkhq",
+      "name": "Expediente Intra Buscar API",
+      "url": "https://appintra.justiciasalta.gov.ar:8092/apiExpedienteIntra/api/expedienteIntra/buscar",
+      "port": "8092",
+      "user": "",
+      "database": "",
+      "type": "http",
+      "category": "Desarrollo",
+      "gxVersion": "",
+      "tomcatVersion": "",
+      "dbVersion": "",
+      "tags": [
+        "API"
+      ],
+      "notes": "",
+      "projects": [
+        "pj1"
+      ],
+      "createdAt": "2026-02-12T15:04:43.086Z",
+      "updatedAt": "2026-02-12T15:40:31.823Z",
+      "httpMethod": "GET"
+    },
+    {
+      "id": "mljof77b07f2u1qwh54i",
+      "name": "Expediente Judicial Postgres",
+      "url": "10.18.250.178",
+      "port": "5432",
+      "database": "",
+      "type": "tcp",
+      "category": "Desarrollo",
+      "httpMethod": "HEAD",
+      "gxVersion": "",
+      "tomcatVersion": "",
+      "dbVersion": "",
+      "tags": [
+        "bd"
+      ],
+      "notes": "",
+      "projects": [
+        "pj1"
+      ],
+      "createdAt": "2026-02-12T16:31:56.471Z",
+      "updatedAt": "2026-02-12T16:31:56.471Z"
+    }
+  ]
+}

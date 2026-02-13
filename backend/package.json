@@ -1,0 +1,18 @@
+{
+  "name": "portal-aplicaciones-backend",
+  "version": "1.0.0",
+  "description": "Backend para el Portal de Aplicaciones - Hub de conexiones",
+  "main": "src/app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "node --watch src/app.js"
+  },
+  "keywords": ["api", "portal", "applications"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  }
+}
