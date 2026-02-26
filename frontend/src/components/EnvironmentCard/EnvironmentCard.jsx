@@ -1,4 +1,5 @@
-import { Star, Copy, ExternalLink, Edit, Trash2, Database, Globe, Server, RefreshCw, Settings } from 'lucide-react';
+import { useState } from 'react';
+import { Star, Copy, ExternalLink, Edit, Trash2, Database, Globe, Server, RefreshCw, Settings, Check, X } from 'lucide-react';
 import { useFavorites } from '../../context/FavoritesContext';
 import { HealthCheck } from '../HealthCheck/HealthCheck';
 import { cn } from '../../utils/cn';
@@ -6,6 +7,7 @@ import { cn } from '../../utils/cn';
 export function EnvironmentCard({ environment, projects, onEdit, onDelete, onHealthCheck, healthResults, isLoadingHealth, onFilterByProject }) {
   const { isFavorite, toggleFavorite } = useFavorites();
   const healthResult = healthResults[environment.id];
+  const [copyState, setCopyState] = useState('idle');
 
   const getIcon = () => {
     switch (environment.type) {
@@ -33,8 +35,72 @@ export function EnvironmentCard({ environment, projects, onEdit, onDelete, onHea
     }
   };
 
+  const fallbackCopy = (text) => {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    textArea.style.top = '0';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+      const successful = document.execCommand('copy');
+      if (successful) {
+        setCopyState('success');
+        setTimeout(() => setCopyState('idle'), 2000);
+      } else {
+        setCopyState('error');
+        setTimeout(() => setCopyState('idle'), 2000);
+      }
+    } catch (err) {
+      console.error('Error al copiar:', err);
+      setCopyState('error');
+      setTimeout(() => setCopyState('idle'), 2000);
+    }
+    
+    document.body.removeChild(textArea);
+  };
+
   const copyToClipboard = (text) => {
-    navigator.clipboard.writeText(text);
+    setCopyState('copying');
+    
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text)
+        .then(() => {
+          setCopyState('success');
+          setTimeout(() => setCopyState('idle'), 2000);
+        })
+        .catch((err) => {
+          console.error('Error al copiar con Clipboard API:', err);
+          fallbackCopy(text);
+        });
+    } else {
+      fallbackCopy(text);
+    }
+  };
+
+  const getCopyIcon = () => {
+    switch (copyState) {
+      case 'success':
+        return <Check className="w-4 h-4 text-green-500" />;
+      case 'error':
+        return <X className="w-4 h-4 text-red-500" />;
+      default:
+        return <Copy className="w-4 h-4" />;
+    }
+  };
+
+  const getCopyTitle = () => {
+    switch (copyState) {
+      case 'success':
+        return '¡Copiado!';
+      case 'error':
+        return 'Error al copiar';
+      default:
+        return 'Copiar URL';
+    }
   };
 
   const isShared = environment.projects && environment.projects.length > 1;
@@ -76,10 +142,15 @@ export function EnvironmentCard({ environment, projects, onEdit, onDelete, onHea
           </code>
           <button
             onClick={() => copyToClipboard(environment.url)}
-            className="p-1 hover:bg-gray-200 dark:hover:bg-gray-600 rounded shrink-0"
-            title="Copiar URL"
+            className={cn(
+              'p-1 rounded shrink-0 transition-colors',
+              copyState === 'success' ? 'bg-green-100 dark:bg-green-900/30' : 'hover:bg-gray-200 dark:hover:bg-gray-600',
+              copyState === 'error' && 'bg-red-100 dark:bg-red-900/30'
+            )}
+            title={getCopyTitle()}
+            disabled={copyState === 'copying'}
           >
-            <Copy className="w-4 h-4" />
+            {getCopyIcon()}
           </button>
         </div>
         
